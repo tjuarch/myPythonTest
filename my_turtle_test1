@@ -1,0 +1,70 @@
+# -*- coding: utf-8 -*-
+'''
+这是一个Python的练习。
+偶然发现turtle这个模块，感觉很好玩，就照着书上的做了一下。
+在做circle的时候，感觉如果能画个螺旋线应该挺好的，于是就试了一下。
+在计算每一步增量的时候麻烦了一下。
+
+'''
+import turtle
+from math import pi
+
+bob = turtle.Turtle()
+
+def fib(n):
+    if n == 0:
+        return 1
+    elif n == 1:
+        return 1
+    else:
+        return fib(n-1) + fib(n-2)
+
+
+
+def square(t):
+    for i in range(4):
+        t.fd(100)
+        t.lt(90)
+
+def circle(t,r):
+    circum = 2 * pi * r
+    n = int(circum /3) + 1
+    step_l = circum / n
+    step_ang = 360 / n
+    for i in range(n):
+        t.fd(step_l)
+        t.lt(step_ang)
+
+def squal(t,r1,r2):
+    circum = 2 * pi * r1
+    n = int(circum /3) + 1
+    step_l = circum / n
+    step_ang = 360 / n
+    for i in range(n):
+        step_l += 2 * pi * (r2-r1)/(n ** 2)
+        t.fd(step_l)
+        t.lt(step_ang)
+
+def reset(t):
+    t.clear()
+    t.penup()
+    t.goto(0,0)
+    t.pendown()
+    
+fiblist = []
+
+for i in range(10):
+    fiblist.append(fib(i) * 10)
+
+for i in range(9):
+    squal(bob,fiblist[i],fiblist[i+1])
+    print(i)
+    
+
+
+
+
+
+    
+
+
